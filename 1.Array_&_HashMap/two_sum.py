@@ -23,5 +23,8 @@ Input: nums = [3,3], target = 6
 Output: [0,1]
 '''
 
-def twoSum(nums,target):
+ee = {1:0,2:1}
+
+if 1 in ee:
+    print("yes")
     
