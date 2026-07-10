@@ -43,7 +43,10 @@ Learnings:
 I have to lookup regular expression to clean the string
 
 Mistakes:
-None
+I was getting confuse in the while condition eventually figured out keeping left < right 
+also solve empty string problem rather than me writing another if condition. Also I overlooked
+the question and was working only on english characters but the question said alphanumeric
+characters. Eventually fixed it
 """
 
 import re
