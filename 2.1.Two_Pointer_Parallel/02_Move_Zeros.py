@@ -1,6 +1,6 @@
 """
 Problem:
-Remove Duplicates from Sorted Aray
+Move Zeros
 
 Pattern:
 Two Pointer (Parallel)
@@ -12,14 +12,13 @@ Easy
 
 My First Thought:
 Start with two pointers reader and writer on the starting index of the array. Move reader 
-from start to the end of the array. Move writer one step only if the reader has encountered
-a new value. Update that location with the new value from reader
+from start to the end of the array. The reader will check for non-zero values and copy the
+non-zero value to the writer location preserving the order in which they originally appear
 
 --------------------------------------------------
 
 Observation:
-Writer only moves when a new value is encountered by reader. Everything before the writer is 
-already in deduplicated form
+Writer only moves when a non-zero value is encountered by the reader
 
 --------------------------------------------------
 
@@ -40,24 +39,25 @@ O(1) for variable declaration
 --------------------------------------------------
 
 Learnings:
-Reader explores and writer commits
+Reader explores and writer commits the non zero value in the original order
 
 Mistakes:
-None, understood the explanation nicely, although it as getting little tricky with the loop 
-and if condition
+None, understood the explanation nicely
 """
 
-def removeDuplicates(nums):
+def moveZeros(nums):
     writer = 0
+
     for reader in range(len(nums)):
-        if nums[reader] != nums[writer]:
-            writer += 1
+        if nums[reader]:
             nums[writer] = nums[reader]
-    return writer + 1
+            writer += 1
 
+    for i in range(writer,len(nums)):
+        nums[i] = 0
+    
+    print(nums)
 
+nums = [0,1,0,3,12]
 
-nums = [0,0,1,1,1,2,2,3,3,4]
-
-print(removeDuplicates(nums))
-
+moveZeros(nums)
