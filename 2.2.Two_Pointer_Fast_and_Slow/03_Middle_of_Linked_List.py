@@ -1,6 +1,6 @@
 """
 Problem:
-Linked List Cycle
+Middle of a Linked List
 
 Pattern:
 Two Pointer (Fast and Slow)
@@ -12,14 +12,13 @@ Easy
 
 My First Thought:
 After understanding the Floyds Algorithm, we can use two pointer Fast and Slow where slow takes
-one step and Fast takes two step, and because there relative speed is 2-1 = 1, if a cycle exists
-then the distance between the two pointer will be 0, hence they meet.
+one step and Fast takes two step. By this approach by the time fast reached the end of the list,
+slow will be at the middle of the list.
 
 --------------------------------------------------
 
 Observation:
-The observation is same as my first though, we will return True if slow pointer is equal to fast
-pointer otherwise False
+The observation is same as my first though, we will return the middle node of the Linked List
 
 --------------------------------------------------
 
@@ -35,8 +34,7 @@ Custome implementaion of linked list give more control over the program.
 --------------------------------------------------
 
 Time Complexity:
-O(n) for traversing the entire linkedd list and if a cycle exist, then few more k nodes inside 
-the cycle before two pointers meet. So time time complexity comes out to be O(n)
+O(n) for traversing the entire linkedd list .
 
 Space Complexity:
 O(1) for variable declaration
@@ -44,12 +42,7 @@ O(1) for variable declaration
 --------------------------------------------------
 
 Learnings:
-Learned how to implement custome linked list using Node Class . Also we are putting condition
-fast and fast.next in the whileloop because if a cycle doesn't exists fast will eventually become
-none, we are checking fast.next because if we are at the last node and inside the while loop
-we are doing fast = fast.next.next, not this will become fast.None.next, this will give us 
-Attribute Error - None type object has not attribute next, hence in the while loop we are 
-checking fast.next
+Learned how to implement custome linked list using Node Class.
 
 Mistakes:
 None, Floyds Algorithm helped a lot
@@ -82,36 +75,14 @@ class LinkedList:
             current = current.next
         current.next = new_node
 
-    def createCycle(self,index):
-        current = self.head
-        target_cycle_node = None
-        count = 0
-
-        while current.next:
-            if count == index:
-                target_cycle_node = current
-            current = current.next
-            count += 1
-
-        # Checking if the tail node is the target node to create the cycle
-        if count == index:
-            target_cycle_node = current
-
-        # Creating a cycle
-        if target_cycle_node:
-            current.next = target_cycle_node
-
-    def hasCycle(self):
+    def middleNode(self):
         slow = self.head
         fast = self.head
-
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
+        return slow
 
-            if slow == fast:
-                return True
-        return False
 
 
 my_lst = LinkedList()
@@ -121,7 +92,4 @@ my_lst.append(20)
 my_lst.append(30)
 my_lst.insertAtBeginning(5)
 
-my_lst.createCycle(1)
-
-print(f"Does the Linked List have a Cycle ? {my_lst.hasCycle()}")
-
+print(f"Middle of a Linked List : {my_lst.middleNode()}")
