@@ -35,7 +35,8 @@ None
 
 Time Complexity:
 O(n) , we are going to do a one pass over the entire list to get the maximum average for a window,
-also we have to calculate the sum for each window, so that will take k (finite) amount of time.
+also we have to calculate the sum once for the first  window using list slicing, so that will 
+take k (finite) amount of time.
 
 Space Complexity:
 O(1), only for variale declaration
@@ -59,7 +60,6 @@ def findMaxAverage(nums, k):
 
     while right < len(nums):
         present_sum = current_sum - nums[left] + nums[right]
-        print(present_sum)
         right += 1
         left += 1
         present_avg = present_sum / k
