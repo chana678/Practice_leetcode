@@ -52,3 +52,26 @@ New pattern - Sliding Window - Variable with Max Frequency
 Mistakes:
 
 """
+
+def characterReplacement(s, k):
+    freq = {}
+    left = 0
+    max_freq = 0
+
+    for right in range(len(s)):
+        freq[s[right]] = 1 + freq.get(s[right], 0)
+        max_freq = max(max_freq, freq[s[right]])
+
+        window_len = right - left + 1
+        replacement = window_len - max_freq
+
+        if replacement > k:
+            freq[s[left]] -= 1
+            left += 1
+
+    return right - left + 1
+
+s = "ABAB"
+k = 2
+
+print(characterReplacement(s,k))
