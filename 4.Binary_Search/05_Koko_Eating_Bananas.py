@@ -55,7 +55,7 @@ def min_eating_speed(piles, h):
         hours = 0
 
         for num in piles:
-            hours += (num + mid - 1) // 2 
+            hours += (num + mid - 1) // mid
 
         if hours <= h:
             right = mid
